@@ -133,14 +133,14 @@ args = parser.parse_args();
 
 #Arg T    
     elif args.t:
-        lireFichier()
-        valeur = [int(nombre) for row in sorted(liste, key=int, reverse=False)]
-        print('Trie croissant: ', valeur)
+        lireFichier();
+        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=False)];
+        print('Trie croissant: ', valeur);
 
 #Arg DESC    
     elif args.desc:
         lireFichier();
-        valeur = [int(nombre) for row in sorted(liste, key=int, reverse=True)]
+        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=True)]
         print('Trie décroissant: ', valeur);
 
 #Arg HELP    
