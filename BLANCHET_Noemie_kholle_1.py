@@ -140,7 +140,7 @@ args = parser.parse_args();
 #Arg DESC    
     elif args.desc:
         lireFichier();
-        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=True)]
+        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=True)];
         print('Trie décroissant: ', valeur);
 
 #Arg HELP    
