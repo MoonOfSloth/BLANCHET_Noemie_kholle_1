@@ -24,9 +24,10 @@ ficherCsv = 'BLANCHET_Noemie_kholle.csv'
 def lireFichier():
     with open(fichierCsv, "l") as fichier:
         lire = csv.reader(fichier)
-        for x in range(len(row)):
-            if len(row) > 0:
-                liste.append(row[x])
+            for row in lire:   
+            for x in range(len(row)):
+                if len(row) > 0:
+                    liste.append(row[x])
 
 
 #Editer un fichier
@@ -101,7 +102,7 @@ args = parser.parse_args()
     elif args.a:
         lireFichier()
         for valeur in args.a:
-                listeVals.append(valeur)
+                liste.append(valeur)
                 editerFichier(liste)
                 print('Valeur', valeur, 'ajoutée')
 
@@ -122,7 +123,8 @@ args = parser.parse_args()
 #Arg MOY    
     elif args.moy:
         lireFichier()
-        moy = (sum(values)/len(liste))
+        valeur = [int(nbr) for nbr in listeValues]
+        moy = (sum(valeur)/len(liste))
         print('La moyenne est: ', (sum(moy))
 
 #Arg SUM    
