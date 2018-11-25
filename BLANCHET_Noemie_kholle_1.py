@@ -1,4 +1,4 @@
-#!/usr/bin/env python36
+#!/usr/local/bin/python3
 
 # TITRE       : Kholle_1
 # NOM         : BLANCHET Noémie
@@ -13,7 +13,7 @@ import csv
 #################
 
 liste = []
-ficherCsv = 'BLANCHET_Noemie_kholle.csv'
+fichierCsv = 'BLANCHET_Noemie_kholle.csv'
 
 #################
 ### Fonctions ###
@@ -22,9 +22,9 @@ ficherCsv = 'BLANCHET_Noemie_kholle.csv'
 #Lire un fichier
 
 def lireFichier():
-    with open(fichierCsv, "l") as fichier:
+    with open(fichierCsv, "r") as fichier:
         lire = csv.reader(fichier)
-            for row in lire:   
+        for row in lire:
             for x in range(len(row)):
                 if len(row) > 0:
                     liste.append(row[x])
@@ -33,7 +33,7 @@ def lireFichier():
 #Editer un fichier
 
 def editerFichier(txt):
-    with open(fichierCsv, "e") as fichier:
+    with open(fichierCsv, "w") as fichier:
         editer = csv.writer(fichier, 
                             delimiter = ',', 
                             quotechar = '"', 
@@ -65,7 +65,7 @@ def valeurMax(listeValeur):
 def valeurMin(listeValeur):
     min = listeValeur[0]
     for valeur in listeValeur:
-        if item < min:
+        if valeur < min:
             min = valeur
     return min
 
@@ -82,8 +82,8 @@ parser.add_argument("-s", "--max", action="store_true", help="Affiche valeur max
 parser.add_argument("-s", "--min", action="store_true", help="Affiche nombre min")
 parser.add_argument("-s", "--moy", action="store_true", help="Affiche la moyenne")
 parser.add_argument("-s", "--sum", action="store_true", help="Affiche la somme")
-parser.add_argument("-t", action="store_true", help="Trie croissant")
 parser.add_argument("-t", "--desc", action="store_true", help="Trie décroissant")
+parser.add_argument("-t", "--asc", action="store_true", help="Trie croissant")
 parser.add_argument("--help", action="store_true", help="Aide")
 args = parser.parse_args()
 
@@ -93,58 +93,58 @@ args = parser.parse_args()
 ##################
 
  #Arg L
- if args.l:
-        lireFichier()
-        for nombre in liste:
-            print(valeur)
+if args.l:
+    lireFichier()
+    for nombre in liste:
+        print(nombre)
 
 #Arg A
-    elif args.a:
-        lireFichier()
-        for valeur in args.a:
-                liste.append(valeur)
-                editerFichier(liste)
-                print('Valeur', valeur, 'ajoutée')
+elif args.a:
+    lireFichier()
+    for valeur in args.a:
+            liste.append(valeur)
+            editerFichier(liste)
+            print('Valeur', valeur, 'ajoutée')
 
 #Arg C    
-    elif args.c:
-        supprElements()
+elif args.c:
+    supprElements()
 
 #Arg MAX    
-    elif args.max:
-        lireFichier()
-        print('La valeur max est: ', valeurMax(liste))
+elif args.max:
+    lireFichier()
+    print('La valeur max est: ', valeurMax(liste))
 
 #Arg MIN    
-    elif args.min:
-        lireFichier()
-        print('La valeur min est: ', valeurMin(liste))
+elif args.min:
+    lireFichier()
+    print('La valeur min est: ', valeurMin(liste))
 
 #Arg MOY    
-    elif args.moy:
-        lireFichier()
-        valeur = [int(nbr) for nbr in listeValues]
-        moy = (sum(valeur)/len(liste))
-        print('La moyenne est: ', (sum(moy))
+elif args.moy:
+    lireFichier()
+    valeur = [int(nombre) for nombre in liste]
+    moy = (sum(valeur)/len(liste))
+    print('La moyenne est: ', moy)
 
 #Arg SUM    
-    elif args.sum:
-        lireFichier()
-        valeur = [int(nombre) for nombre in liste]
-        print('The total sum is', sum(valeur))
+elif args.sum:
+    lireFichier()
+    valeur = [int(nombre) for nombre in liste]
+    print('la somme est de ', sum(valeur))
+    
+#Arg DESC    
+elif args.desc:
+    lireFichier()
+    valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=True)]
+    print('Trie décroissant: ', valeur)
 
 #Arg T    
-    elif args.t:
-        lireFichier()
-        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=False)]
-        print('Trie croissant: ', valeur)
-
-#Arg DESC    
-    elif args.desc:
-        lireFichier()
-        valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=True)]
-        print('Trie décroissant: ', valeur)
+elif args.asc:
+    lireFichier()
+    valeur = [int(nombre) for nombre in sorted(liste, key=int, reverse=False)]
+    print('Trie croissant', valeur)
 
 #Arg HELP    
-    else:
-        parser.print_help()
+else:
+    parser.print_help()
