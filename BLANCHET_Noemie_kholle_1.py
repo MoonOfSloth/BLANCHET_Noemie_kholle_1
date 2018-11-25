@@ -43,7 +43,7 @@ def editerFichier(txt):
 #Supprimer tous les éléments de la liste
 
 def supprElements():
-    while len(listeVals) != 0:
+    while len(liste) != 0:
         liste.remove([0])
     editerFichier(liste)
 
