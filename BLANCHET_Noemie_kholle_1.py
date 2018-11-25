@@ -128,7 +128,7 @@ args = parser.parse_args();
 #Arg SUM    
     elif args.sum:
         lireFichier();
-        valeur = [int(nombre) for row in liste];
+        valeur = [int(nombre) for nombre in liste];
         print('The total sum is', sum(valeur));
 
 #Arg T    
